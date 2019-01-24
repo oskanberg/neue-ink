@@ -1,0 +1,49 @@
+.sidebar {
+    position: relative;
+    flex-grow: 0;
+    flex-basis: auto;
+    background-color: #f6f4f3;
+}
+
+.sidebar-content {
+    height: 100%;
+}
+
+.sidebar.is-visible  ~ .content {
+    flex-basis: 0;
+}
+
+.content {
+    transition: flex-basis .2s ease-in-out;
+    will-change: flex-basis;
+}
+
+.openclose {
+    position: absolute;
+    top: 1em;
+    right: -2em;
+
+    opacity: 0.5;
+    
+    cursor: pointer;
+}
+
+.openclose:hover {
+    opacity: 0.9;
+}
+
+.add {
+    cursor: pointer;
+    
+    min-width: 1em;
+    margin-right: 1em;
+    padding: 0.2em;
+    border-radius: 50%;
+    width: 1em;
+    height: 1em;
+    background: #dcdcdc;
+    color: #333333;
+    
+    position: absolute;
+    left: 1em;
+}

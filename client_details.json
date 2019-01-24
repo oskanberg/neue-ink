@@ -1,0 +1,11 @@
+{
+    "web": {
+        "client_id": "106070458255-2ljjmfcm2adqgqam4j4ie95f8lofh701.apps.googleusercontent.com",
+        "project_id": "boreal-freedom-228816",
+        "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+        "token_uri": "https://oauth2.googleapis.com/token",
+        "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+        "client_secret": "OuzZdaSvwna7_PJ3_rAWrLkf",
+        "api_key": "AIzaSyDXS3y1Rywhq04GBK3lctiC-2PEdeIxJKw"
+    }
+}

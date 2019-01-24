@@ -1,0 +1,14 @@
+
+#writer {
+    padding: 1em;
+    border-radius: 0.1em;
+    max-width: 24em;
+    margin: 0 auto;
+    margin-bottom: 5em;
+}
+
+.editor {
+    min-height: 20em;
+    text-align: justify;
+    width: 100%;
+}
