@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import Plain from 'slate-plain-serializer';
 import TrashIcon from 'react-icons/lib/go/trashcan';
+import CheckIcon from 'react-icons/lib/go/check';
+
 
 const StyledFileList = styled.nav`
     margin: 0 auto;
@@ -12,7 +14,7 @@ const StyledFileList = styled.nav`
     ul {
         padding: 0;
         margin: 0;
-        margin-bottom: 0.5em;
+        margin-bottom: 1em;
     }
     
     li {
@@ -48,7 +50,7 @@ const FileLink = styled.a`
     cursor: pointer;
 `;
 
-const Trash = styled(TrashIcon)`
+const Delete = styled.div`
     cursor: pointer;
     min-width: 1em;
     margin-right: 1em;
@@ -56,26 +58,63 @@ const Trash = styled(TrashIcon)`
     border-radius: 50%;
     width: 1em;
     height: 1em;
-    background: #dcdcdc;
-    color: #333333;
+    transition: background-color 100ms ease-in;
+    background: ${props => props.confirm ? "#bb4545" : "#dcdcdc"};
+    color: ${props => props.confirm ? "#fff" : "#333333"};;
+    line-height: 0em;
+    vertical-align: center;
 `;
 
 class FileList extends Component {
+
+    state = {
+        confirm: null
+    }
+
+    delete = id => {
+        if (this.state.confirm === id) {
+            this.setState({ confirm: null });
+            this.props.onDelete(id);
+            return;
+        }
+
+        clearTimeout(this.timer);
+        this.setState({ confirm: id });
+        this.timer = setTimeout(() => {
+            let { confirm } = this.state;
+            if (confirm === id && confirm != null) {
+                this.setState({ confirm: null });
+            }
+        }, 1500);
+    };
+
+
+    componentWillUnmount() {
+        clearInterval(this.timer);
+    }
+
     render() {
-        let { files, onSelect, onDelete } = this.props;
-        let fileList = files.map(f => (
-            <li
-                className={f.selected ? "selected" : ""}
-                key={f.id}
+        let { files, onSelect } = this.props;
+        let fileList = files.map(f => {
+            const confirm = this.state.confirm === f.id;
+
+            return (
+                <li
+                    className={f.selected ? "selected" : ""}
+                    key={f.id}
                 >
-                <Trash
-                    onClick={() => onDelete(f.id)}
-                    ></Trash>
-                <FileLink
-                    onClick={() => onSelect(f.id)}
-                >{Plain.serialize(f.name)}</FileLink>
-            </li>
-        ));
+                    <Delete
+                        onClick={() => this.delete(f.id)}
+                        confirm={confirm}
+                    >
+                        {confirm ? <CheckIcon /> : <TrashIcon />}
+                    </Delete>
+                    <FileLink
+                        onClick={() => onSelect(f.id)}
+                    >{Plain.serialize(f.name)}</FileLink>
+                </li>
+            )
+        });
         return (
             <StyledFileList>
                 <ul>

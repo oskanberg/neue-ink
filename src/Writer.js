@@ -15,7 +15,7 @@ class Writer extends Component {
   }
 
   onChange = ({ value }) => {
-    if (value === this.props.value) return;
+    if (value === this.props.content) return;
     this.props.onUpdate(value);
   };
 
