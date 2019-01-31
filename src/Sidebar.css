@@ -3,6 +3,7 @@
     flex-grow: 0;
     flex-basis: auto;
     background-color: #f6f4f3;
+    box-shadow: inset -10px 0px 10px -10px rgba(0,0,0,0.2);
 }
 
 .sidebar-content {
