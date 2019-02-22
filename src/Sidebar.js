@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import {GoListUnordered, GoPlus} from 'react-icons/go';
+import ListIco from 'react-icons/lib/go/list-unordered';
+import PlusIco from 'react-icons/lib/go/plus';
 
 import FileList from './FileList';
 import './Sidebar.css';
@@ -25,10 +26,10 @@ export default class Sidebar extends Component {
 
         return (
             <aside className={`sidebar${this.state.open ? " is-visible" : ""}`}>
-                <GoListUnordered
+                <ListIco
                     className="openclose"
                     onClick={this.toggle}
-                ></GoListUnordered>
+                ></ListIco>
 
                 <div className="sidebar-content">
                     <FileList
@@ -36,11 +37,11 @@ export default class Sidebar extends Component {
                         onSelect={onSelect}
                         onDelete={onDelete}
                     ></FileList>
-                    <GoPlus
+                    <PlusIco
                         className="add"
                         onClick={addFile}
                     >
-                    </GoPlus>
+                    </PlusIco>
                 </div>
             </aside>
         );

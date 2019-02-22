@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 import Plain from 'slate-plain-serializer';
-import { GoTrashcan, GoCheck } from 'react-icons/go';
+import TrashIcon from 'react-icons/lib/go/trashcan';
+import CheckIcon from 'react-icons/lib/go/check';
+
 
 const StyledFileList = styled.nav`
     margin: 0 auto;
@@ -63,49 +65,64 @@ const Delete = styled.div`
     vertical-align: center;
 `;
 
-export default ({ files, onSelect, onDelete }) => {
-    let [confirm, setConfirm] = useState(-1);
+class FileList extends Component {
 
-    useEffect(() => {
-        if (confirm === -1) return;
-        let timer = setTimeout(() => setConfirm(-1), 1500)
-        return () => clearTimeout(timer);
-    }, [confirm]);
-
-    const deleteFile = id => {
-        if (confirm !== id) {
-            setConfirm(id);
-            return;
-        }
-        
-        setConfirm(-1);
-        onDelete(id);
+    state = {
+        confirm: null
     }
 
-    let fileList = files.map(f => {
-        const confirmThis = confirm === f.id;
-        return (
-            <li
-                className={f.selected ? "selected" : ""}
-                key={f.id}
-            >
-                <Delete
-                    onClick={() => deleteFile(f.id)}
-                    confirm={confirmThis}
+    delete = id => {
+        if (this.state.confirm === id) {
+            this.setState({ confirm: null });
+            this.props.onDelete(id);
+            return;
+        }
+
+        clearTimeout(this.timer);
+        this.setState({ confirm: id });
+        this.timer = setTimeout(() => {
+            let { confirm } = this.state;
+            if (confirm === id && confirm != null) {
+                this.setState({ confirm: null });
+            }
+        }, 1500);
+    };
+
+
+    componentWillUnmount() {
+        clearInterval(this.timer);
+    }
+
+    render() {
+        let { files, onSelect } = this.props;
+        let fileList = files.map(f => {
+            const confirm = this.state.confirm === f.id;
+
+            return (
+                <li
+                    className={f.selected ? "selected" : ""}
+                    key={f.id}
                 >
-                    {confirmThis ? <GoCheck /> : <GoTrashcan />}
-                </Delete>
-                <FileLink
-                    onClick={() => onSelect(f.id)}
-                >{Plain.serialize(f.name)}</FileLink>
-            </li>
-        )
-    });
-    return (
-        <StyledFileList>
-            <ul>
-                {fileList}
-            </ul>
-        </StyledFileList>
-    );
-};
+                    <Delete
+                        onClick={() => this.delete(f.id)}
+                        confirm={confirm}
+                    >
+                        {confirm ? <CheckIcon /> : <TrashIcon />}
+                    </Delete>
+                    <FileLink
+                        onClick={() => onSelect(f.id)}
+                    >{Plain.serialize(f.name)}</FileLink>
+                </li>
+            )
+        });
+        return (
+            <StyledFileList>
+                <ul>
+                    {fileList}
+                </ul>
+            </StyledFileList>
+        );
+    }
+}
+
+export default FileList;
