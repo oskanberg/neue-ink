@@ -48,6 +48,7 @@ const StyledFileList = styled.nav`
 
 const FileLink = styled.a`
     cursor: pointer;
+    min-width: 3rem;
 `;
 
 const Delete = styled.div`
