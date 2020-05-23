@@ -4432,9 +4432,9 @@ hash.js@^1.0.0, hash.js@^1.0.3:
     minimalistic-assert "^1.0.1"
 
 hashtag-regex@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/hashtag-regex/-/hashtag-regex-2.0.0.tgz#9b32413529e9ca28b41e7c6378e35677b178d5ad"
-  integrity sha512-6qWo1g10ggwyorTjMEswX/z8DkODD1XnfjBjndIAj7rnUOgVlwYQz4UPQU9yBz2jBGd3Im1D1wlzzI/o6Q1Ptw==
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/hashtag-regex/-/hashtag-regex-2.1.0.tgz#9c82142e96a9ffa8421151763cb9fef30c75ba8b"
+  integrity sha512-D89pGyCZOMtaXdEJ1he9/GmhZAUXlHPn+oN2oFmrNZFX9MlblUdqw7DmJ2IlWc1My+GP0BeCDlMwWW2zSVLVoA==
 
 he@1.2.x:
   version "1.2.0"
@@ -8848,9 +8848,9 @@ slate-hotkeys@^0.2.8:
     slate-dev-environment "^0.2.1"
 
 slate-md-serializer@^5.2.3-0:
-  version "5.2.3-0"
-  resolved "https://registry.yarnpkg.com/slate-md-serializer/-/slate-md-serializer-5.2.3-0.tgz#94de51f69779b6efbbcd35c83969acd82888acc4"
-  integrity sha512-oO2ShnqGxcu6biws++ftxGueDFCMf1gmfbiYpwOShbiQHbKoVGRog2Yu6cOE3DNJql04b2BYmEhzT6uyKr7zXQ==
+  version "5.5.0"
+  resolved "https://registry.yarnpkg.com/slate-md-serializer/-/slate-md-serializer-5.5.0.tgz#404fb37a49b636ab08622c06b2b24dabc1edb29e"
+  integrity sha512-uNTLrmT3xVmycJXMOIIFOvWHquph+k+6MhjraQzedyq6zoxkg/y/S6/MGJf82QVC9dZAddL9jBrDeXQ4CStvFw==
   dependencies:
     hashtag-regex "^2.0.0"
 
